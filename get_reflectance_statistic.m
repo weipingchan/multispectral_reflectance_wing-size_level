@@ -1,6 +1,5 @@
 function sppresult=get_reflectance_statistic(mask, layerImg, UVthreshold, scale)
     UVchannel=immultiply(layerImg,mask);
-%             UVthreshold=0.1;
     UVbinary=imbinarize(UVchannel,UVthreshold);
     maskarea = bwarea(mask); 
     UVarea = bwarea(UVbinary);

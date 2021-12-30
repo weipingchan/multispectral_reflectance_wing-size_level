@@ -1,7 +1,4 @@
 function single_band_AnaWholeSpecimen2(Mat_directory, morph_mat_directory, Code_directory, Result_directory, bandno_input, reflectanceThreshold)
-%Mat_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Drawer_result\spp_matrices';
-%Code_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\Multi_spectra_processing';
-%Result_directory='D:\Milk desk\Dropbox\Harvard\Coloration_research\';
 %Read the file list in the Img_directory
 if size(Mat_directory,2)==1 Mat_directory=Mat_directory{1};, end;
 if size(morph_mat_directory,2)==1 morph_mat_directory=morph_mat_directory{1};, end;
@@ -16,12 +13,11 @@ img_listing=img_ds(:,1).name;
 spectralNames={'740','940','UV','UVF','F','white','whitePo1','whitePo2','FinRGB','PolDiff'};
 bodyPartNames={'lf_wing', 'rf_wing', 'lh_wing', 'rh_wing', 'body', 'antenna'};
 
-% reflectanceThreshold=0.05;
 bandno=bandno_input;
 
 vdlist={'dorsal','ventral'};
 if bandno <= 5
-    %Handling 1-channel BW images
+    %Handling an 1-channel BW image
     disp('Using BW 1-channel system');
     flag=num2str(-9999); %for those error results
     result  = cell2table(cell(0,8), 'VariableNames', {'Specimen_Barcode', 'Side', 'body_part', 'Area_Mask_cm2', ['Area_',spectralNames{bandno},'_cm2'], ['b_',spectralNames{bandno},'_reflectance_perCm2_mean'], ['b_',spectralNames{bandno},'_reflectance_perCm2_cv'], ['Area_',spectralNames{bandno},'_pct']});
@@ -41,7 +37,7 @@ if bandno <= 5
             bodyPart='all';
             sppresult=[{barcode}, {vdlist{side}}, bodyPart, sppresult0];
 
-            %try summary of different wing part
+            %trying to summarize different wing parts
             morph_data = dir(fullfile(morph_mat_directory,[barcode,'_',vdlist{side},'*morph-seg.mat']));
             if ~isempty(morph_data)
                 morphin=fullfile(morph_mat_directory, morph_data.name);
@@ -74,7 +70,7 @@ if bandno <= 5
     end
 
 elseif bandno <=10
-    %Handling 3-channel RGB images
+    %Handling a 3-channel RGB images
     disp('Usinge RGB 3-channel system');
     result  = cell2table(cell(0,16), 'VariableNames', {'Specimen_Barcode', 'Side', 'body_part', 'Area_Mask_cm2',...
          ['Area_',spectralNames{bandno},'_R_cm2'], ['b_',spectralNames{bandno},'_R','_reflectance_perCm2_mean'], ['b_',spectralNames{bandno},'_R','_reflectance_perCm2_cv'], ['Area_',spectralNames{bandno},'_R_pct'],...
@@ -97,7 +93,7 @@ elseif bandno <=10
             sppchannelresult0=get_reflectance_statistic_RGB(mask, sppmat{bandno}, reflectanceThreshold, scale);
             sppresult=[{barcode}, {vdlist{side}}, bodyPart, sppchannelresult0];
             
-            %try summary of different wing part
+            %trying to summarize different wing parts
             morph_data = dir(fullfile(morph_mat_directory,[barcode,'_',vdlist{side},'*morph-seg.mat']));
             if ~isempty(morph_data)
                 morphin=fullfile(morph_mat_directory, morph_data.name);
