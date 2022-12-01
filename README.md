@@ -1,4 +1,4 @@
-# multispectral_reflectance_wing-size_level
+# multispectral reflectance wing-size level
  To calculate multispectral reflectance at the wing-size level based on a given reflectance threshold
 
 Please find the article describing the application of this script below (DOI: 10.1038/s42003-022-04282-z):
