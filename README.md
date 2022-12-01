@@ -8,4 +8,4 @@ Please find the link for the corresponding protocol:
 (https://www.protocols.io/private/F3292DF1FE0211EB878B0A58A9FEAC02)
 
 Please cite this work as:
-Chan, W-P., Rabideau Childers, R., Ashe, S. et al. A high-throughput multispectral imaging system for museum specimens. Commun Biol 5, 1318 (2022).
+Chan, W-P., Rabideau Childers, R., Ashe, S. *et al.* A high-throughput multispectral imaging system for museum specimens. *Commun Biol* **5**, 1318 (2022).
